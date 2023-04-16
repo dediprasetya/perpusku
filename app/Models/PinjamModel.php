@@ -28,7 +28,7 @@ class PinjamModel extends Model
 
     public function buku()
     {
-        return $this->belongsTo(BukuModel::class, 'judul');
+        return $this->belongsTo(BukuModel::class);
     }
 
 

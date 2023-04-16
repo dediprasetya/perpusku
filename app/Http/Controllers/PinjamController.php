@@ -8,6 +8,7 @@ use App\Models\BukuModel;
 use App\Models\PinjamModel;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotifController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -52,20 +53,31 @@ class PinjamController extends Controller
             'nama_anggota' => 'required',
             'judul' => 'required'
         ]);
+
+        //$cekbuku = BukuModel::select('*')
+           // ->where('judul', $request->judul,)
+            //->get('status');
+
+        //if ($cekbuku =='Instock'){
     
-        PinjamModel::create([
+        $pinjam = PinjamModel::create([
             'nama_anggota' => $request->nama_anggota,
             'judul' => $request->judul,
             'tanggal_pinjam' => Carbon::now()->toDateString(),
             'tanggal_wajib_kembali'=> Carbon::now()->addDay(7)->toDateString(),
         ]);
 
-        //Proses update tabel buku
-        //$buku = BukuModel::findOrFail($request->judul); 
-        //$buku->status = 'dipinjam';
-        //$buku->save();
+        $buku = BukuModel::where('judul',$request->judul)->update(['status'=> 'dipinjam']);
 
-        return redirect()->route('tampilpinjam');        
+            //Proses update tabel buku
+            //$buku = BukuModel::findOrFail($request->judul); 
+            //$buku->status = 'dipinjam';
+            //$buku->save();
+
+        return redirect()->route('tampilpinjam'); 
+        //}else{
+            //return redirect()->route('tampilpinjam'); 
+        //}       
             
     }
 
@@ -151,6 +163,7 @@ class PinjamController extends Controller
         // $buku->save();
             //DB::commit();
             */
+            $buku = BukuModel::where('judul',$request->judul)->update(['status'=> 'In Stock']);
             return redirect()->route('tampilpinjam')->with('msg','Data Berhasil di Simpan');
             
         }
@@ -164,6 +177,7 @@ class PinjamController extends Controller
                 'denda'=> null,
                 'status'=> 'Proses peminjaman selesai',
                 ]);
+                $buku = BukuModel::where('judul',$request->judul)->update(['status'=> 'Instock']);
                 return redirect()->route('tampilpinjam')->with('msg','Data Berhasil di Simpan');
         }
     }    

@@ -59,6 +59,12 @@ Route::post('pinjam/simpan', [PinjamController::class, 'simpanpinjam'])->name('s
 Route::get('pinjam/kembali/{id_pinjaman}', [PinjamController::class, 'kembalipinjam'])->name('kembalipinjam')->middleware('auth');
 Route::post('kembali/ajukan', [PinjamController::class, 'ajukankembali'])->name('ajukankembali')->middleware('auth');
 
+//notifikasi
+Route::get('/pesan','NotifController@index');
+Route::get('/pesan/sukses','NotifController@sukses');
+Route::get('/pesan/peringatan','NotifController@peringatan');
+Route::get('/pesan/gagal','NotifController@gagal');
+
 Route::get('/login', function () {
     return view('login');
   });
