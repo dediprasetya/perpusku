@@ -34,7 +34,7 @@
                     <td>{{$p->judul}}</td>
                     <td>{{$p->tanggal_pinjam}}</td>
                     <td>{{$p->tanggal_wajib_kembali}}</td>
-                    <td>{{$p->pengembalian}}</td>
+                    <td>{{$p->tanggal_kembali}}</td>
                     <td>{{$p->denda}}</td>
                     <td>{{$p->status}}</td>
                     <td align="center">

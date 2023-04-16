@@ -9,6 +9,7 @@
                     <div class="form-group row">
                         <label for="nama anggota" class="col-sm-4 col-form-label">NAMA ANGGOTA</label>
                         <div class="col-sm-8">
+                        <input type="hidden" name="id_pinjaman" value="{{$s->id_pinjaman}}">
                         <input type="text" name="nama_anggota" value="{{$s->nama_anggota}}" class="form-control" placeholder="Nama Anggota" required="">
                         </div>
                     </div>
@@ -41,7 +42,7 @@
                     </div>
                     <p>
                     <div class="modal-footer">
-                        <button type="button" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="button" href="{{route('tampilpinjam')}}" name="tutup" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" name="pinjamtambah" class="btn btn-success">Ajukan Pengambalian</button>
                     </div>
                 </form>

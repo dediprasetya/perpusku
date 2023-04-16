@@ -5,6 +5,7 @@
                     <form name="formpinjamtambah" id="formpinjamtambah" action="{{route('simpanpinjam')}} " method="post" enctype="multipart/form-data">
                     @csrf
                     <p>
+                    <input type="hidden" name="id_pinjaman">
                     <div class="form-group row">
                         <label for="idsiswa" class="col-sm-4 col-form-label">NAMA ANGGOTA</label>
                         <div class="col-sm-8">
@@ -16,7 +17,6 @@
                             </select>
                         </div>
                     </div>
-
                     <p>
                     <div class="form-group row">
                         <label for="idbuku" class="col-sm-4 col-form-label">Judul Buku</label>
